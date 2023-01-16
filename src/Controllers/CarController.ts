@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import Car from '../Domains/Car';
 import IController from '../Interfaces/IController';
 import CarService from '../Services/CarService';
 
@@ -16,7 +17,11 @@ export default class CarControler {
   }
 
   public async create() {
-    const newCar = await this._carService.save(this._req.body);
-    return this._res.status(201).json(newCar);
+    try {
+      const newCar: Car | null = await this._carService.save(this._req.body);
+      return this._res.status(201).json(newCar);
+    } catch (error) {
+      this._nextFunc(error);
+    }
   }
 }

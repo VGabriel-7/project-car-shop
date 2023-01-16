@@ -15,7 +15,7 @@ export default class CarODM {
       model: { type: String, required: true },
       year: { type: Number, required: true },
       color: { type: String, required: true },
-      status: { type: Boolean, required: true },
+      status: { type: Boolean },
       buyValue: { type: Number, required: true },
       doorsQty: { type: Number, required: true },
       seatsQty: { type: Number, required: true },
@@ -23,7 +23,7 @@ export default class CarODM {
     this.model = models.Car || model('Car', this.schema);
   }
 
-  public create(car: ICar): Promise<ICar> {
+  public async create(car: ICar): Promise<ICar> {
     return this.model.create({ ...car });
   }
 }

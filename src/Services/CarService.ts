@@ -9,7 +9,7 @@ export default class CarService {
     this._carODM = carODM;
   }
 
-  private createCarDoamin(car: ICar): ICar | null {
+  private createCarDoamin(car: ICar): Car | null {
     if (car) {
       return new Car({
         id: car.id,
@@ -26,7 +26,7 @@ export default class CarService {
     return null;
   }
 
-  public async save(car: ICar): Promise<ICar | null> {
+  public async save(car: ICar): Promise<Car | null> {
     const newCar = await this._carODM.create(car);
     return this.createCarDoamin(newCar);
   }
