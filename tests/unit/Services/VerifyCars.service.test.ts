@@ -10,7 +10,7 @@ describe('Deveria retornar erros', function () {
     const carODM = new CarODM();
     const carService = new CarService(carODM);
     const result = await carService.findById('');
-  
+    
     // Assert
     expect(result).to.be.equal('Invalid mongo id');
   });
@@ -19,7 +19,7 @@ describe('Deveria retornar erros', function () {
     // Arrange
     sinon.stub(Model, 'findById').resolves(null);
   
-    // Act
+    // Act.
     const carODM = new CarODM();
     const carService = new CarService(carODM);
     const result = await carService.findById('99c99f9cfd999dbad5bd9d90');
