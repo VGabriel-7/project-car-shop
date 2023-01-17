@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
-import CarODM from '../../../src/Models/CarODM';
-import CarService from '../../../src/Services/CarService';
-import ICar from '../../../src/Interfaces/ICar';
-import Car from '../../../src/Domains/Car';
+import CarODM from '../../../../src/Models/CarODM';
+import CarService from '../../../../src/Services/CarService';
+import ICar from '../../../../src/Interfaces/ICar';
+import Car from '../../../../src/Domains/Car';
 
 describe('Deveria retornar os carros atualizados da collection', function () {
   it('Deveria retornar o carro atualizado', async function () {

@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
-import CarODM from '../../../src/Models/CarODM';
-import CarService from '../../../src/Services/CarService';
-import arrayCars from './mocks/ArraysCarMock';
+import CarODM from '../../../../src/Models/CarODM';
+import CarService from '../../../../src/Services/CarService';
+import arrayCars from '../mocks/ArraysCarMock';
 
 describe('Deveria listar os carros cadastrados na collection', function () {
   afterEach(function () {

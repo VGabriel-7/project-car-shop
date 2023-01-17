@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
-import CarODM from '../../../src/Models/CarODM';
-import CarService from '../../../src/Services/CarService';
+import CarODM from '../../../../src/Models/CarODM';
+import CarService from '../../../../src/Services/CarService';
 
 describe('Deveria retornar erros', function () {
   it('Deveria retornar o erro Invalid mongo id', async function () {
