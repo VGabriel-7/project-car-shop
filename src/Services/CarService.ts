@@ -39,7 +39,7 @@ export default class CarService {
     }
     
     const carFound = await this._carODM.findById(id);
-
+    
     if (!carFound) return 'Car not found';
 
     return this.createCarDoamin(carFound);
@@ -51,5 +51,17 @@ export default class CarService {
       return arrayCars.map((car) => this.createCarDoamin(car));
     }
     return [];
+  }
+
+  public async update(id: string, updateCar: ICar): Promise<Car | null | string> {
+    if (!id || !mongoose.isValidObjectId(id)) {
+      return 'Invalid mongo id';
+    }
+    
+    const carFound = await this._carODM.update(id, updateCar);
+    
+    if (!carFound) return 'Car not found';
+
+    return this.createCarDoamin(carFound);
   }
 }

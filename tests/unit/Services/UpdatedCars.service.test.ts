@@ -1,14 +1,14 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
-import ICar from '../../../src/Interfaces/ICar';
-import Car from '../../../src/Domains/Car';
 import CarODM from '../../../src/Models/CarODM';
 import CarService from '../../../src/Services/CarService';
+import ICar from '../../../src/Interfaces/ICar';
+import Car from '../../../src/Domains/Car';
 
-describe('Deveria salvar os carros cadastrados na collection', function () {
-  it('Deveria alvar os carros cadastrados na collection com SUCESSO', async function () {
-  // Arrange
+describe('Deveria retornar os carros atualizados da collection', function () {
+  it('Deveria retornar o carro atualizado', async function () {
+    // Arrange
     const carInput: ICar = {
       model: 'Marea',
       year: 2002,
@@ -18,9 +18,9 @@ describe('Deveria salvar os carros cadastrados na collection', function () {
       doorsQty: 4,
       seatsQty: 5,
     };
-
+  
     const carOutput: Car = new Car({
-      id: '6348513f34c397abcad040b2',
+      id: '99c99f9cfd999dbad5bd9d90',
       model: 'Marea',
       year: 2002,
       color: 'Black',
@@ -29,13 +29,13 @@ describe('Deveria salvar os carros cadastrados na collection', function () {
       doorsQty: 4,
       seatsQty: 5,
     });
-    sinon.stub(Model, 'create').resolves(carOutput);
-
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(carOutput);
+  
     // Act
     const carODM = new CarODM();
     const carService = new CarService(carODM);
-    const result = await carService.save(carInput);
-
+    const result = await carService.update('99c99f9cfd999dbad5bd9d90', carInput);
+  
     // Assert
     expect(result).to.be.deep.equal(carOutput);
   });

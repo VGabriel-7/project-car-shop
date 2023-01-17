@@ -32,7 +32,10 @@ export default class CarODM {
   }
 
   public async find(): Promise<Array<ICar>> {
-    const foundCars = await this.model.find();
-    return foundCars;
+    return this.model.find();
+  }
+
+  public async update(id: string, updateCar: ICar): Promise<ICar | null> {
+    return this.model.findByIdAndUpdate(id, updateCar);
   }
 }
