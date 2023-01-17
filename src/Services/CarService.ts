@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import Car from '../Domains/Car';
 import ICar from '../Interfaces/ICar';
 import CarODM from '../Models/CarODM';
@@ -28,6 +29,27 @@ export default class CarService {
 
   public async save(car: ICar): Promise<Car | null> {
     const newCar = await this._carODM.create(car);
+
     return this.createCarDoamin(newCar);
+  }
+
+  public async findById(id: string): Promise<Car | null | string> {
+    if (!id || !mongoose.isValidObjectId(id)) {
+      return 'Invalid mongo id';
+    }
+    
+    const carFound = await this._carODM.findById(id);
+
+    if (!carFound) return 'Car not found';
+
+    return this.createCarDoamin(carFound);
+  }
+
+  public async find(): Promise<Array<Car | null>> {
+    const arrayCars = await this._carODM.find();
+    if (arrayCars) {
+      return arrayCars.map((car) => this.createCarDoamin(car));
+    }
+    return [];
   }
 }
